@@ -3,9 +3,90 @@ using System.Collections.Generic;
 
 namespace inläming_2_Svante
 {
-    class MemberInBaseGroup
+    public class MemberInBaseGroup
     {
-        private List<string>GroupMember{ get; set; }
+        private string name;
+        private string stad;
+        private int age;
+        private string boende;
+        private string familj;
+        private string husdjur;
+        private string senasteYrke;
+        private string hobby;
+        private string favoritMat;
+        private string favoritMusik;
+        private string programmeringsDriv;
+
+        public MemberInBaseGroup(string name, string stad, int age, string boende, string familj, string husdjur, string senasteYrke, string hobby,
+            string favoritMat, string favoritMusik, string programmeringsDriv)
+        {
+            this.name = name;
+            this.stad = stad;
+            this.age = age;
+            this.boende = boende;
+            this.familj = familj;
+            this.husdjur = husdjur;
+            this.senasteYrke = senasteYrke;
+            this.hobby = hobby;
+            this.favoritMat = favoritMat;
+            this.favoritMusik = favoritMusik;
+            this.programmeringsDriv = programmeringsDriv;
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public string Stad
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+        public string Boende
+        {
+            get { return boende; }
+            set { boende = value; }
+        }
+        public string Familj
+        {
+            get { return familj; }
+            set { familj = value; }
+        }
+        public string Husdjur
+        {
+            get { return husdjur; }
+            set { husdjur = value; }
+        }
+        public string SenasteYrke
+        {
+            get { return senasteYrke; }
+            set { senasteYrke = value; }
+        }
+        public string Hobby
+        {
+            get { return hobby; }
+            set { hobby = value; }
+        }
+        public string FavoritMat
+        {
+            get { return favoritMat; }
+            set { favoritMat = value; }
+        }
+        public string FavoritMusik
+        {
+            get { return favoritMusik; }
+            set { favoritMusik = value; }
+        }
+        public string ProgrammeringsDriv
+        {
+            get { return programmeringsDriv; }
+            set { programmeringsDriv = value; }
+        }
 
     }
     class Program
@@ -29,17 +110,59 @@ namespace inläming_2_Svante
 
                 Console.WriteLine("Coffe ´n Code"); //gör till meny2
 
+               
                 string strMenu = Console.ReadLine();
-                char menuChoice = Convert.ToChar(strMenu);
-                char menuChoiceUpper = menuChoice.ToUpper();
+                string menuChoice = strMenu.ToUpper();
 
-                string string1 = "c";
-                string upperString = string1.ToUpper();
+                
+                // gör en meny metod som kallar på klasserna members
+               switch (menuChoice)
+                {
+                    case "A":
+                        WriteAllMembers();
+                        break;
+                    case "B":
+                        // WriteAllMemberInfo gör dem till klasser inte metoder
+                        Console.Write("knapp b");
+                        break;
+                    case "C":
+                        // ta bort person
+                        Console.Write("knapp c");
+                        break;
 
-                switch
+                    default:
+                        Console.WriteLine("Ogiltigt val prova igen");
 
+                        break;
+                }
 
+                /*  "Mall" för att lägg in medlemmar
+                    private string name;
+                    private string stad;
+                    private int age;
+                    private string boende;
+                    private string familj;
+                    private string husdjur;
+                    private string senasteYrke;
+                    private string hobby;
+                    private string favoritMat;
+                    private string favoritMusik;
+                    private string programmeringsDriv;
+                (string name, string stad, int age, string boende, string familj, string husdjur, string senasteYrke, string hobby,
+            string favoritMat, string favoritMusik, string programmeringsDriv)
+                */
+                List<MemberInBaseGroup> MemberList = new List<MemberInBaseGroup>();
+                //AuthorList.Add(new Author("Mahesh Chand", 35, "A Prorammer's Guide to ADO.NET", true, new DateTime(2003, 7, 10)));
+                MemberList.Add(new MemberInBaseGroup("Mikael Alexander Larsson","Vänersborg", 35, "Villa", "Fru Två döttrar och en tredje dotter på väg"," två kaniner",
+                    " Restauranglärare", " Träning och hälsa, surdegsbröd", ": Bönchiligryta i tortillabröd", ": Elektroniskt. Allt mellan ambient och techno.",
+                    "Mitt största driv är att det är härligt att få den dagliga hjärngympan man får med programmering, att det är kreativt och att man faktiskt skapar en produkt i slutändan"));
+                MemberList.Add(new MemberInBaseGroup("Svante Joelsson", "Strömstad", 36, "Strömstad", ": Sambo och en son", "Hund", "Fritidspedagog", "Illustrera och animera",
+            "Pasta al fungi", "Gubbrock och allt som är bra", "Kul combo av kreativitet och frihet och att en dag landa ett jobb med mer frihet"));
 
+                foreach (var Member in MemberList)
+                {
+                    Console.WriteLine("Medlem: {0},{1}", MemberInBaseGroup.name, author.Age, author.BookTitle, author.IsMVP, author.PublishedDate);
+                }
             }
 
         }
