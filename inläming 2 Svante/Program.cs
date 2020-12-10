@@ -89,6 +89,15 @@ namespace inläming_2_Svante
         }
 
     }
+    public class Svanton : MemberInBaseGroup
+    {
+        public Svanton(string name, string stad, int age, string boende, string familj, string husdjur, string senasteYrke, string hobby,
+            string favoritMat, string favoritMusik, string programmeringsDriv) : base(name, stad, age, boende, familj, husdjur, senasteYrke,
+                hobby, favoritMat, favoritMusik, programmeringsDriv)
+        {
+        }
+
+    }
     class Program
     {
         static void Main(string[] args)
@@ -151,17 +160,19 @@ namespace inläming_2_Svante
                 (string name, string stad, int age, string boende, string familj, string husdjur, string senasteYrke, string hobby,
             string favoritMat, string favoritMusik, string programmeringsDriv)
                 */
+               
                 List<MemberInBaseGroup> MemberList = new List<MemberInBaseGroup>();
                 //AuthorList.Add(new Author("Mahesh Chand", 35, "A Prorammer's Guide to ADO.NET", true, new DateTime(2003, 7, 10)));
                 MemberList.Add(new MemberInBaseGroup("Mikael Alexander Larsson","Vänersborg", 35, "Villa", "Fru Två döttrar och en tredje dotter på väg"," två kaniner",
                     " Restauranglärare", " Träning och hälsa, surdegsbröd", ": Bönchiligryta i tortillabröd", ": Elektroniskt. Allt mellan ambient och techno.",
                     "Mitt största driv är att det är härligt att få den dagliga hjärngympan man får med programmering, att det är kreativt och att man faktiskt skapar en produkt i slutändan"));
-                MemberList.Add(new MemberInBaseGroup("Svante Joelsson", "Strömstad", 36, "Strömstad", ": Sambo och en son", "Hund", "Fritidspedagog", "Illustrera och animera",
+                MemberList.Add(new MemberInBaseGroup("Svante Joelsson", "Strömstad", 36, "Lägenhet", "Sambo och en son", "Hund", "Fritidspedagog", "Illustrera och animera",
             "Pasta al fungi", "Gubbrock och allt som är bra", "Kul combo av kreativitet och frihet och att en dag landa ett jobb med mer frihet"));
 
-                foreach (var Member in MemberList)
+                foreach (var member in MemberList)
                 {
-                    Console.WriteLine("Medlem: {0},{1}", MemberInBaseGroup.name, author.Age, author.BookTitle, author.IsMVP, author.PublishedDate);
+                    Console.WriteLine("Member: {0},{1}", member.Name, member.Stad, member.Age, member.Boende, member, );
+                   // Console.WriteLine("Member: {0},{1}", MemberInBaseGroup.name, author.Age, author.BookTitle, author.IsMVP, author.PublishedDate);
                 }
             }
 
