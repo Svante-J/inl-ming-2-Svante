@@ -109,8 +109,7 @@ namespace inläming_2_Svante
     }
     class Program
     {
-        private static readonly object memberList;
-
+        
         static void Main(string[] args)
         {
             bool keepAskingPassword = true;
@@ -151,7 +150,7 @@ namespace inläming_2_Svante
         }
         static void OptionMenu()
         {
-              // en huvud metod med lista de andra behöver bara läsa
+              // en "huvudmetod" med lista de andra behöver bara läsa förutom removeMember
           
             List<MemberInBaseGroup> memberList = new List<MemberInBaseGroup>();
             memberList.Add(new MemberInBaseGroup("Mikael Alexander Larsson", "Vänersborg", 35, "Villa", "Fru Två döttrar och en tredje dotter på väg", " två kaniner",
@@ -188,12 +187,12 @@ namespace inläming_2_Svante
                     break;
                 case "B":
 
-                    Console.Clear();
+                    
                     WriteMemberInfo(memberList);
 
                     break;
                 case "C":
-                    RemoveMember();
+                    RemoveMember(memberList);
                     break;
 
                 default:
@@ -202,24 +201,21 @@ namespace inläming_2_Svante
                     break;
             }
         }
-        // metod för att skriva ut medlemmar
+        
         static void WriteAllMembers(IReadOnlyList<MemberInBaseGroup> memberList)
         {
-            
-            // memberList.ForEach(i => Console.Write(" " + "{0}" + ",", i));
-             foreach (var member in memberList) 
-            {
-                Console.WriteLine($"banan {0}");
-            }
-            // läs stack länken och lista ut hur methoder kan komma åt varandra med read only etc
-            //skrota listan ovan
-           // for (int i = 0; i < memberList.Count; i++);
-            
 
+            Console.Clear();
+            foreach (var member in memberList) 
+            {
+                Console.Write($"{{0}},",member.Name);
+            }
+                       
         }
         static void WriteMemberInfo(IReadOnlyList<MemberInBaseGroup> memberList)
         {
-            //memberList.RemoveAt(1);
+            Console.Clear();
+            
             foreach (var member in memberList)
             {
                 Console.WriteLine($" Namn:{{0}}\n Stad: {{1}}\n Ålder: {{2}}\n Boende: {{3}}\n Familj: {{4}}\n Husdjur: {{5}}\n Senaste yrke: {{6}}\n Hobby: {{7}}\n Favorit maträtt: {{8}}\n Favorit musik: {{9}}\n Driv till att programera: {{10}}\n"
@@ -229,15 +225,21 @@ namespace inläming_2_Svante
 
         }
 
-        private static void RemoveMember()
+        static void RemoveMember(List<MemberInBaseGroup> memberList)
         {
             Console.Clear();
+            
+            for (int i = 0; i < memberList.Count; i++)
+            {
+                Console.WriteLine($"{i}:");
+            }
             Console.WriteLine("Skriv förnamnet på den du vill ta bort");
+            
             // valet under tar bort en hel rad
             // memberList.RemoveAt(1);
-            // kanske döpa denna addremovemembers
+            
 
-            return; // 
+            
         }
 
 
