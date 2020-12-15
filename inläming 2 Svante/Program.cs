@@ -109,7 +109,7 @@ namespace inläming_2_Svante
     }
     class Program
     {
-        
+        static List<MemberInBaseGroup> memberList = new List<MemberInBaseGroup>();
         static void Main(string[] args)
         {
             bool keepAskingPassword = true;
@@ -119,7 +119,7 @@ namespace inläming_2_Svante
             {
                 // städa upp med method
                 Console.WriteLine("\n\t\t\tVälkommen!\n\nVar god skriv in den hemliga koden");
-                Console.Write(">");
+                Console.Write("> ");
 
                 string strPassword = Console.ReadLine();
                 string password = strPassword.ToUpper();
@@ -137,7 +137,7 @@ namespace inläming_2_Svante
                 }
 
             }
-
+            WriteList();
             while (keepGoing)
             {
                 Console.WriteLine("\n\tCoffe ´n Code"); //gör till meny2 method
@@ -148,11 +148,13 @@ namespace inläming_2_Svante
             }
 
         }
-        static void OptionMenu()
+
+        private static void WriteList()
         {
-              // en "huvudmetod" med lista de andra behöver bara läsa förutom removeMember
-          
-            List<MemberInBaseGroup> memberList = new List<MemberInBaseGroup>();
+            // en "huvudmetod" med lista de andra behöver bara läsa förutom removeMember
+            // släng in den 
+
+            
             memberList.Add(new MemberInBaseGroup("Mikael Alexander Larsson", "Vänersborg", 35, "Villa", "Fru Två döttrar och en tredje dotter på väg", " två kaniner",
             "Restauranglärare", " Träning och hälsa, surdegsbröd", ": Bönchiligryta i tortillabröd", ": Elektroniskt. Allt mellan ambient och techno.",
             "Mitt största driv är att det är härligt att få den dagliga hjärngympan man får med programmering, att det är kreativt och att man faktiskt skapar en produkt i slutändan"));
@@ -175,6 +177,11 @@ namespace inläming_2_Svante
             memberList.Add(new MemberInBaseGroup("Farzane Zafarzade", "Karlstad", 32, "Lägenhet", "min man och inget barn", "Inga", "IT-support", "Träning och bakning",
             "Alla typer av pastarätter", "lugna och klassikermusik", ": Problemlösning, inom att lösa problem man lär sig att bli mer tålmodig och kreativ"));
 
+        }
+
+        static void OptionMenu()
+        {
+              
             Console.WriteLine("\nvalA write all \nVal B info \nval c remove\n");
             string strMenu = Console.ReadLine();
             string menuChoice = strMenu.ToUpper();
@@ -183,17 +190,17 @@ namespace inläming_2_Svante
             switch (menuChoice)
             {
                 case "A":
-                    WriteAllMembers(memberList);
+                    WriteAllMembers();
 
                     break;
                 case "B":
 
                     
-                    WriteMemberInfo(memberList);
+                    WriteMemberInfo();
 
                     break;
                 case "C":
-                    RemoveMember(memberList);
+                    RemoveMember();
                     break;
 
                 default:
@@ -203,7 +210,7 @@ namespace inläming_2_Svante
             }
         }
         
-        static void WriteAllMembers(IReadOnlyList<MemberInBaseGroup> memberList)
+        static void WriteAllMembers()
         {
 
             Console.Clear();
@@ -213,7 +220,7 @@ namespace inläming_2_Svante
             }
                        
         }
-        static void WriteMemberInfo(IReadOnlyList<MemberInBaseGroup> memberList)
+        static void WriteMemberInfo()
         {
             Console.Clear();
             
@@ -226,7 +233,7 @@ namespace inläming_2_Svante
 
         }
 
-        static void RemoveMember(List<MemberInBaseGroup> memberList)
+        static void RemoveMember()
         {
             Console.Clear();
 
@@ -237,9 +244,9 @@ namespace inläming_2_Svante
             }
 
             Console.WriteLine("Skriv numret på den du vill ta bort");
-            Console.WriteLine(">");
+            Console.Write("> ");
             int iRemove = Convert.ToInt32(Console.ReadLine());
-            memberList.RemoveAt(2);
+            memberList.RemoveAt(iRemove -1);
 
 
             // valet under tar bort en hel rad
