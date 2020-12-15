@@ -172,12 +172,13 @@ namespace inläming_2_Svante
             "Italienskt", " House", ""));
             memberList.Add(new MemberInBaseGroup("Sarah Winroth", "Vara", 31, "Lägenhet", "Gift", "Inga", " Reseledare", " Motionerar gärna",
             " Älskar mat i alla former", "Lyssnar på det mesta", " Själva problemlösningen och tillfredsställelsen efteråt!"));
-            memberList.Add(new MemberInBaseGroup(" Farzane Zafarzade", "Karlstad", 32, "Lägenhet", "min man och inget barn", "Inga", "IT-support", "Träning och bakning",
+            memberList.Add(new MemberInBaseGroup("Farzane Zafarzade", "Karlstad", 32, "Lägenhet", "min man och inget barn", "Inga", "IT-support", "Träning och bakning",
             "Alla typer av pastarätter", "lugna och klassikermusik", ": Problemlösning, inom att lösa problem man lär sig att bli mer tålmodig och kreativ"));
 
             Console.WriteLine("\nvalA write all \nVal B info \nval c remove\n");
             string strMenu = Console.ReadLine();
             string menuChoice = strMenu.ToUpper();
+            
 
             switch (menuChoice)
             {
@@ -228,18 +229,24 @@ namespace inläming_2_Svante
         static void RemoveMember(List<MemberInBaseGroup> memberList)
         {
             Console.Clear();
+
             
             for (int i = 0; i < memberList.Count; i++)
             {
-                Console.WriteLine($"{i}:");
+                Console.WriteLine($" {i +1} {memberList[i].Name}");
             }
-            Console.WriteLine("Skriv förnamnet på den du vill ta bort");
-            
+
+            Console.WriteLine("Skriv numret på den du vill ta bort");
+            Console.WriteLine(">");
+            int iRemove = Convert.ToInt32(Console.ReadLine());
+            memberList.RemoveAt(2);
+
+
             // valet under tar bort en hel rad
             // memberList.RemoveAt(1);
-            
 
-            
+
+
         }
 
 
