@@ -92,69 +92,57 @@ namespace inläming_2_Svante
 
 
         }
-
-
-
     }
-    public class Svanton : MemberInBaseGroup
-    {
-        public Svanton(string name, string stad, int age, string boende, string familj, string husdjur, string senasteYrke, string hobby,
-            string favoritMat, string favoritMusik, string programmeringsDriv) : base(name, stad, age, boende, familj, husdjur, senasteYrke,
-                hobby, favoritMat, favoritMusik, programmeringsDriv)
-        {
-            programmeringsDriv = "Fiezta";
-        }
 
-
-    }
-    class Program
-    {
+        class Program
+    {   // statisc lista efter lite krångel med loopar som jävlades med loopar
         static List<MemberInBaseGroup> memberList = new List<MemberInBaseGroup>();
+        
+
         static void Main(string[] args)
         {
-            bool keepAskingPassword = true;
-            bool keepGoing = true;
 
-            while (keepAskingPassword == true)
+            while (!Login())
             {
-                // städa upp med method
-                Console.WriteLine("\n\t\t\tVälkommen!\n\nVar god skriv in den hemliga koden");
-                Console.Write("> ");
+                Login();
+            } 
 
-                string strPassword = Console.ReadLine();
-                string password = strPassword.ToUpper();
-                Console.WriteLine(password);
-                if (password == "COFFE N CODE")
-                {
-                    Console.Clear();
-                    Console.WriteLine("Du är värdig\n");
-                    keepAskingPassword = false;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Du är inte värdig\n");
-                }
-
-            }
             WriteList();
-            while (keepGoing)
+
+            while (!OptionMenu())
             {
-                Console.WriteLine("\n\tCoffe ´n Code"); //gör till meny2 method
-
-                OptionMenu();
-
                 
+                OptionMenu();                
             }
 
         }
+        
+        static bool Login()
+        {            
 
+            Console.WriteLine("\n\t\t\tVälkommen!\n\nVar god skriv in den hemliga koden");
+            Console.Write("> ");
+            string strPassword = Console.ReadLine();
+            string password = strPassword.ToUpper();
+            Console.WriteLine(password);
+            if (password == "COFFE N CODE")
+            {
+                Console.Clear();
+                Console.WriteLine("Du är värdig\n");               
+                return true;                
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Du är inte värdig\n");
+                return false;
+            }
+
+
+        }
         private static void WriteList()
         {
-            // en "huvudmetod" med lista de andra behöver bara läsa förutom removeMember
-            // släng in den 
 
-            
             memberList.Add(new MemberInBaseGroup("Mikael Alexander Larsson", "Vänersborg", 35, "Villa", "Fru Två döttrar och en tredje dotter på väg", " två kaniner",
             "Restauranglärare", " Träning och hälsa, surdegsbröd", ": Bönchiligryta i tortillabröd", ": Elektroniskt. Allt mellan ambient och techno.",
             "Mitt största driv är att det är härligt att få den dagliga hjärngympan man får med programmering, att det är kreativt och att man faktiskt skapar en produkt i slutändan"));
@@ -178,35 +166,36 @@ namespace inläming_2_Svante
             "Alla typer av pastarätter", "lugna och klassikermusik", ": Problemlösning, inom att lösa problem man lär sig att bli mer tålmodig och kreativ"));
 
         }
-
-        static void OptionMenu()
+        static bool OptionMenu()
         {
-              
+            Console.WriteLine("\n\tCoffe ´n Code");
             Console.WriteLine("\nvalA write all \nVal B info \nval c remove\n");
             string strMenu = Console.ReadLine();
             string menuChoice = strMenu.ToUpper();
-            
+
 
             switch (menuChoice)
             {
                 case "A":
                     WriteAllMembers();
-
-                    break;
-                case "B":
-
+                    return false;
                     
+                case "B":
                     WriteMemberInfo();
-
-                    break;
+                    return false;
+                   
                 case "C":
                     RemoveMember();
-                    break;
-
+                    return false;
+                   
+                case "Q":
+                    Console.WriteLine("lägg in method");
+                    return true;                    
                 default:
                     Console.WriteLine("Ogiltigt val prova igen");
+                    return false;
+                    
 
-                    break;
             }
         }
         
@@ -214,16 +203,16 @@ namespace inläming_2_Svante
         {
 
             Console.Clear();
-            foreach (var member in memberList) 
+            foreach (var member in memberList)
             {
-                Console.Write($"{{0}},",member.Name);
+                Console.Write($"{{0}},", member.Name);
             }
-                       
+
         }
         static void WriteMemberInfo()
         {
             Console.Clear();
-            
+
             foreach (var member in memberList)
             {
                 Console.WriteLine($" Namn:{{0}}\n Stad: {{1}}\n Ålder: {{2}}\n Boende: {{3}}\n Familj: {{4}}\n Husdjur: {{5}}\n Senaste yrke: {{6}}\n Hobby: {{7}}\n Favorit maträtt: {{8}}\n Favorit musik: {{9}}\n Driv till att programera: {{10}}\n"
@@ -237,27 +226,19 @@ namespace inläming_2_Svante
         {
             Console.Clear();
 
-            
+
             for (int i = 0; i < memberList.Count; i++)
             {
-                Console.WriteLine($" {i +1} {memberList[i].Name}");
+                Console.WriteLine($" {i + 1} {memberList[i].Name}");
             }
 
             Console.WriteLine("Skriv numret på den du vill ta bort");
             Console.Write("> ");
             int iRemove = Convert.ToInt32(Console.ReadLine());
-            memberList.RemoveAt(iRemove -1);
-
-
-            // valet under tar bort en hel rad
-            // memberList.RemoveAt(1);
+            memberList.RemoveAt(iRemove - 1);     
 
 
 
         }
-
-
-
-
     }
 }
